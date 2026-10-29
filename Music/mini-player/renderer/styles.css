@@ -1,0 +1,302 @@
+:root {
+    --bg: #070707;
+    --glass: rgba(255, 255, 255, 0.04);
+    --accent: #1fb6ff;
+    --muted: #f2f2f2;
+    --art-size: 72px;
+    --font-size: 14px;
+    --blur: 8px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: "Segoe UI", "Trebuchet MS", Tahoma, sans-serif;
+    background: #070707;
+}
+
+.mini {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.82);
+    border-radius: 12px;
+    padding: 10px 12px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    color: #ffffff;
+    backdrop-filter: blur(14px) saturate(1.05);
+    -webkit-backdrop-filter: blur(14px) saturate(1.05);
+    transition: opacity 180ms ease, transform 180ms ease;
+    opacity: 0;
+    transform: translateY(6px);
+    -webkit-app-region: drag;
+}
+
+.mini.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.drag {
+    width: 96px;
+    height: 96px;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 18px
+}
+
+.close {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    z-index: 2;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+
+.left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.art {
+    width: var(--art-size);
+    height: var(--art-size);
+    background: linear-gradient(135deg, #222, #111);
+    border-radius: 8px;
+    box-shadow: inset 0 -6px 14px rgba(0, 0, 0, 0.5);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.art.record {
+    outline: none;
+}
+
+.art.playing {
+    transform: scale(1.02);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(31, 182, 255, 0.03) inset;
+    transition: transform 180ms;
+}
+
+.art.play-active {
+    transform: scale(1.04);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(31, 182, 255, 0.04) inset;
+}
+
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    max-width: 260px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: var(--font-size);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: none;
+}
+
+.artist {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 2px;
+    opacity: 0.9;
+}
+
+
+.lyrics-preview {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 12px;
+    max-width: 240px;
+    line-height: 1.25;
+    white-space: pre-wrap;
+    opacity: 0.88;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.btn {
+    background: rgba(0, 0, 0, 0.45);
+    border: none;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+    backdrop-filter: blur(2px);
+    font-size: 14px;
+}
+
+.btn.small {
+    padding: 7px 10px;
+    font-size: 13px;
+}
+
+.btn:hover {
+    background: rgba(0, 0, 0, 0.62);
+}
+
+/* Search modal */
+.modal {
+    position: absolute;
+    inset: 8px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+}
+
+.modal[aria-hidden="false"] {
+    display: flex;
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.86);
+    border-radius: 10px;
+    padding: 12px;
+    min-width: 440px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+    color: #ffffff;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sr-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.sr-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.sr-thumb {
+    width: 48px;
+    height: 48px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+}
+
+.sr-info {
+    font-size: 13px;
+    color: #ffffff;
+    white-space: normal;
+}
+
+.sr-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center
+}
+
+.pl-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.pl-info {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.pl-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.modal-content input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.42);
+    color: inherit;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.modal-content input:focus,
+.btn:focus {
+    outline: 2px solid rgba(31, 182, 255, 0.65);
+    outline-offset: 1px;
+}
+
+.scroll-region {
+    margin-top: 8px;
+    max-height: 300px;
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
+.search-results {
+    max-height: 280px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.mini::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    filter: blur(12px);
+    border-radius: 12px;
+    z-index: 0;
+}
+
+/* Subtle blurred background image when artwork is present */
+.mini::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-art, none);
+    background-size: cover;
+    background-position: center;
+    filter: blur(var(--blur)) saturate(1.05) brightness(0.55);
+    border-radius: 12px;
+    z-index: 0;
+}
+
+.mini>* {
+    position: relative;
+    z-index: 1;
+}

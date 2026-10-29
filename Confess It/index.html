@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Quiz 💖</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hearts" aria-hidden="true">
+      <span>💖</span>
+      <span>💕</span>
+      <span>💗</span>
+      <span>💘</span>
+      <span>💞</span>
+    </div>
+
+    <main class="container">
+      <section id="quiz-card" class="card">
+        <h1>Love MCQ Quiz 💘</h1>
+        <p class="subtitle">Answer these cute questions first!</p>
+        <div class="progress-wrap">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <p id="progress-text" class="progress-text">Question 1 of 4</p>
+
+        <div id="question-box">
+          <h2 id="question-text"></h2>
+          <div id="options" class="options"></div>
+        </div>
+
+        <div id="score-box" class="hidden"></div>
+      </section>
+
+      <section id="final-card" class="card hidden">
+        <h2>So... do you love me? 😚</h2>
+        <p id="final-message" class="subtitle">Choose wisely 👀</p>
+
+        <div id="button-area" class="button-area">
+          <button id="yes-btn" class="btn yes">Yes 💖</button>
+          <button id="no-btn" class="btn no">No 🙈</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "blog-site-backend",
+  "version": "1.0.0",
+  "description": "Backend API for the Blog Site project",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:seed": "node prisma/seed.js",
+    "db:deploy": "prisma generate && prisma migrate deploy && npm run prisma:seed",
+    "deploy": "npm run db:deploy",
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "@prisma/client": "^5.10.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.1"
+  }
+}

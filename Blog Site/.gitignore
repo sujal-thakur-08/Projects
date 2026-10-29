@@ -1,0 +1,9 @@
+.env
+backend/.env
+backend/prisma/dev.db
+backend/node_modules
+frontend/node_modules
+node_modules
+dist
+build
+.vercel

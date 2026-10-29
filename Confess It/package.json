@@ -1,0 +1,16 @@
+{
+  "name": "yes-or-no-love-quiz",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "share": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\" \"npx localtunnel --port 5173\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm install --prefix server --include=dev && npm install --prefix client --include=dev && npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

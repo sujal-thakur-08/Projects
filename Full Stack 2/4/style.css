@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+}
+
+.counter-wrapper {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Counter Display States */
+.counter-display {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.counter-display.positive {
+    background: #d4edda;
+    border: 2px solid #28a745;
+}
+
+.counter-display.negative {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+}
+
+.counter-display.zero {
+    background: #f8f9fa;
+    border: 2px solid #6c757d;
+}
+
+.counter-value {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.counter-display.positive .counter-value {
+    color: #28a745;
+}
+
+.counter-display.negative .counter-value {
+    color: #dc3545;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Button Base Styles */
+.btn {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Button Default State */
+.btn-decrement {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-reset {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-increment {
+    background: #28a745;
+    color: white;
+}
+
+/* Button Hover State */
+.btn-decrement:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+}
+
+.btn-reset:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+}
+
+.btn-increment:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* Button Active State */
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Focus State */
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+/* Button Disabled State */
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Ripple Effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* State Information */
+.state-info {
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.state-label {
+    font-size: 1rem;
+    color: #666;
+}
+
+#stateLabel {
+    font-weight: bold;
+    color: #333;
+}
+
+#stateLabel.positive {
+    color: #28a745;
+}
+
+#stateLabel.negative {
+    color: #dc3545;
+}
+
+#stateLabel.zero {
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .counter-wrapper {
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .counter-value {
+        font-size: 3rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apple Music Mini Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="mini">
+        <div class="drag" title="Drag to move"></div>
+        <button id="close" class="close" title="Hide to tray">✕</button>
+        <div class="left">
+            <div class="art" id="art"></div>
+            <div class="meta">
+                <div class="title" id="title"></div>
+                <div class="artist" id="artist"></div>
+                <div class="lyrics-preview" id="lyricsPreview"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="prev" class="btn">◀◀</button>
+            <button id="play" class="btn">►</button>
+            <button id="next" class="btn">▶▶</button>
+            <button id="searchBtn" class="btn small">Search</button>
+            <button id="playlistBtn" class="btn small">Playlist</button>
+            <button id="settingsBtn" class="btn small">Settings</button>
+        </div>
+    </div>
+
+    <!-- Search modal -->
+    <div id="searchModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <input id="searchInput" placeholder="Search songs or artists" autocomplete="off" />
+            <div style="display:flex;gap:8px;align-items:center">
+                <input id="geniusToken" placeholder="Genius API token (optional)"
+                    style="flex:1;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+                <button id="saveTokenBtn" class="btn">Save</button>
+            </div>
+            <div id="searchResults" class="scroll-region search-results"></div>
+            <div class="modal-actions">
+                <button id="doSearch" class="btn">Find</button>
+                <button id="saveCurrent" class="btn">Save Current</button>
+                <button id="loadPlaylistBtn" class="btn">Load Playlist</button>
+                <button id="closeSearch" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- removed playlist and lyrics modals; small preview is shown inline -->
+    <!-- Full lyrics modal -->
+    <div id="fullLyricsModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <div id="fullLyricsContent" class="scroll-region" style="white-space:pre-wrap; color:#dfe9f2">
+            </div>
+            <div class="modal-actions">
+                <button id="closeFullLyrics" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Playlist modal -->
+    <div id="playlistModal" class="modal" aria-hidden="true">
+        <div class="modal-content playlist">
+            <div id="playlistList" class="scroll-region"></div>
+            <div class="modal-actions">
+                <button id="savePlaylistToDisk" class="btn">Save To Disk</button>
+                <button id="clearPlaylist" class="btn">Clear</button>
+                <button id="closePlaylist" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+    <!-- Settings modal -->
+    <div id="settingsModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <label>Accent color: <input type="color" id="accentColor"></label>
+            <label>Background tint: <input type="color" id="bgColor"></label>
+            <hr />
+            <div style="display:flex;gap:8px;align-items:center">
+                <button id="openLogin" class="btn">Open Login Window</button>
+                <button id="saveSession" class="btn">Save Session</button>
+                <button id="restoreSession" class="btn">Restore Session</button>
+                <button id="clearSession" class="btn">Clear Session</button>
+            </div>
+            <div style="margin-top:8px">
+                <label><input id="autoRestore" type="checkbox"> Restore session on startup</label>
+            </div>
+            <hr />
+            <div style="display:flex;flex-direction:column;gap:8px">
+                <input id="appleDevToken" placeholder="Apple Music Developer Token (JWT)" autocomplete="off" />
+                <input id="appleUserToken" placeholder="Apple Music User Token (optional)" autocomplete="off" />
+                <input id="appleStorefront" placeholder="Storefront (default: us)" value="us" autocomplete="off" />
+                <button id="saveAppleTokens" class="btn">Save Apple Music Tokens</button>
+            </div>
+            <div class="modal-actions">
+                <button id="closeSettings" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+
+</html>

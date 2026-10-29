@@ -1,0 +1,55 @@
+# Git metadata from the individual project repositories
+**/.git/
+
+# Local environments and dependency directories
+**/.venv/
+**/venv/
+**/env/
+**/node_modules/
+**/__pycache__/
+**/.pytest_cache/
+**/.mypy_cache/
+
+# Build and test output
+**/dist/
+**/build/
+**/target/
+**/coverage/
+**/.next/
+**/.cache/
+**/.vercel/
+**/.local/
+**/*.pyc
+**/*.pyo
+**/*.tsbuildinfo
+
+# Local IDE and editor files
+**/.idea/
+**/.vs/
+**/*.iml
+**/*.ipr
+**/*.iws
+**/.classpath
+**/.project
+**/.settings/
+
+# Excluded from the monorepo by request
+Blog Site.worktrees/
+IntelliJ IDEA 2025.3.2/
+
+# Local secrets and databases; example files remain tracked
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/*credentials*.json
+**/*secret*
+**/*token*
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+
+# Logs and archives
+**/*.log
+**/*.zip

@@ -1,0 +1,24 @@
+customtkinter>=5.2.0
+
+# Offline speech recognition + text-to-speech
+vosk>=0.3.45
+sounddevice>=0.4.6
+pyttsx3>=2.90
+
+# Online speech recognition + text-to-speech (optional but recommended)
+SpeechRecognition>=3.10.0
+PyAudio>=0.2.14
+gTTS>=2.5.0
+pygame>=2.5.0
+
+# Global hotkey + volume control
+keyboard>=0.13.5
+
+# Screenshots
+Pillow>=10.0.0
+
+# System tray launcher app (tray_app.py)
+pystray>=0.19.5
+
+# Windows-only: needed to resolve Start Menu shortcuts for app_launcher.py
+pywin32>=306; sys_platform == 'win32'

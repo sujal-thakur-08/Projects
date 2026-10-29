@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' file: https: data:; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+<title>Mini Player</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="bar" id="bar">
+
+    <!-- draggable title strip -->
+    <div class="titlebar" id="titlebar">
+      <button class="iconbtn ghost" id="searchToggle" title="Search Apple Music">
+        <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2"/><line x1="15.3" y1="15.3" x2="20.5" y2="20.5"/></svg>
+      </button>
+      <div class="titlebar-spacer"></div>
+      <button class="iconbtn ghost small" id="hideBtn" title="Hide to tray">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button class="iconbtn ghost small" id="quitBtn" title="Quit">
+        <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- main control row -->
+    <div class="player" id="player">
+
+      <div class="transport">
+        <button class="iconbtn toggle" id="shuffleBtn" title="Shuffle">
+          <svg viewBox="0 0 24 24"><path d="M3 6h3.5c1.6 0 3 .9 3.8 2.2M3 18h3.5c1.6 0 3-.9 3.8-2.2M14.5 8.2C15.3 6.9 16.7 6 18.3 6H21M14.5 15.8c.8 1.3 2.2 2.2 3.8 2.2H21M18 3l3 3-3 3M18 15l3 3-3 3"/></svg>
+        </button>
+        <button class="iconbtn" id="prevBtn" title="Previous">
+          <svg viewBox="0 0 24 24"><path d="M18 5v14L7 12z"/><line x1="6" y1="5" x2="6" y2="19"/></svg>
+        </button>
+        <button class="iconbtn play" id="playBtn" title="Play/Pause">
+          <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l12-7z"/></svg>
+          <svg id="iconPause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="5" width="4.5" height="14" rx="1"/><rect x="13.5" y="5" width="4.5" height="14" rx="1"/></svg>
+        </button>
+        <button class="iconbtn" id="nextBtn" title="Next">
+          <svg viewBox="0 0 24 24"><path d="M6 5v14l11-7z"/><line x1="18" y1="5" x2="18" y2="19"/></svg>
+        </button>
+        <button class="iconbtn toggle" id="repeatBtn" title="Repeat">
+          <svg viewBox="0 0 24 24"><path d="M4 8c0-1.7 1.3-3 3-3h9l-2.5-2.5M20 16c0 1.7-1.3 3-3 3H8l2.5 2.5"/></svg>
+        </button>
+      </div>
+
+      <div class="track" id="trackInfo">
+        <div class="artwork" id="artworkWrap">
+          <img id="artworkImg" alt="" />
+          <div class="artwork-fallback" id="artworkFallback">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.6"/></svg>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="title-row">
+            <span class="title" id="titleText">Not Playing</span>
+            <span class="badge" id="previewBadge">PREVIEW</span>
+          </div>
+          <div class="artist" id="artistText">Open Apple Music to get started</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="iconbtn" id="moreBtn" title="More">
+          <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg>
+        </button>
+        <button class="iconbtn" id="lyricsBtn" title="Lyrics">
+          <svg viewBox="0 0 24 24"><path d="M4 4h13l3 3v13H4z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="14" y2="14"/></svg>
+        </button>
+        <button class="iconbtn" id="queueBtn" title="Queue">
+          <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
+        </button>
+        <div class="volume" id="volumeWrap">
+          <button class="iconbtn" id="volumeBtn" title="Volume">
+            <svg id="volIconOn" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 8.5c1.1 1 1.1 6 0 7"/></svg>
+            <svg id="volIconMute" viewBox="0 0 24 24" style="display:none"><path d="M4 9v6h4l5 4V5L8 9z"/><line x1="16" y1="9" x2="21" y2="15"/><line x1="21" y1="9" x2="16" y2="15"/></svg>
+          </button>
+          <div class="volume-pop" id="volumePop">
+            <input type="range" id="volumeSlider" class="vslider" min="0" max="100" value="70" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- progress -->
+    <div class="progress" id="progress">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+        <div class="progress-thumb" id="progressThumb"></div>
+      </div>
+      <div class="progress-time left" id="timeCurrent">0:00</div>
+      <div class="progress-time right" id="timeTotal">0:00</div>
+    </div>
+
+    <!-- overlays -->
+    <div class="overlay" id="searchOverlay">
+      <div class="overlay-head">
+        <svg class="overlay-icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2"/><line x1="15.3" y1="15.3" x2="20.5" y2="20.5"/></svg>
+        <input id="searchInput" placeholder="Search Apple Music" autocomplete="off" />
+        <button class="iconbtn small ghost" id="searchClose">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="overlay-list" id="searchResults"></div>
+    </div>
+
+    <div class="overlay" id="lyricsOverlay">
+      <div class="overlay-head">
+        <span class="overlay-title">Lyrics</span>
+        <button class="iconbtn small ghost" id="lyricsClose">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="overlay-body" id="lyricsBody">No lyrics loaded yet.</div>
+    </div>
+
+    <div class="overlay" id="queueOverlay">
+      <div class="overlay-head">
+        <span class="overlay-title">Saved Playlist</span>
+        <button class="iconbtn small ghost" id="queueClose">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="overlay-list" id="queueList"></div>
+    </div>
+
+    <div class="overlay" id="menuOverlay">
+      <div class="menu-list">
+        <button class="menu-item" id="menuOpenAM">Open Apple Music</button>
+        <button class="menu-item" id="menuSaveSession">Save Sign-in Session</button>
+        <button class="menu-item" id="menuRestoreSession">Restore Sign-in Session</button>
+        <button class="menu-item" id="menuClearSession">Clear Sign-in Session</button>
+        <div class="menu-divider"></div>
+        <button class="menu-item" id="menuSettings">Settings</button>
+        <button class="menu-item danger" id="menuClose">Close Menu</button>
+      </div>
+    </div>
+
+    <div class="overlay" id="settingsOverlay">
+      <div class="overlay-head">
+        <span class="overlay-title">Settings</span>
+        <button class="iconbtn small ghost" id="settingsClose">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="overlay-body settings-body">
+        <label>Storefront <input id="setStorefront" placeholder="us" /></label>
+        <label>Developer Token <input id="setDevToken" placeholder="optional, enables catalog search" /></label>
+        <label>Music User Token <input id="setUserToken" placeholder="optional" /></label>
+        <label>Genius Token <input id="setGeniusToken" placeholder="optional, enables lyrics" /></label>
+        <button class="menu-item accent" id="saveSettings">Save</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

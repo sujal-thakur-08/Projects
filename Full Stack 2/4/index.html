@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with States</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="counter-wrapper">
+            <h1>Counter App</h1>
+            
+            <div class="counter-display" id="counterDisplay">
+                <span class="counter-value">0</span>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-decrement" id="decrementBtn">
+                    <span>-</span>
+                </button>
+                
+                <button class="btn btn-reset" id="resetBtn">
+                    <span>Reset</span>
+                </button>
+                
+                <button class="btn btn-increment" id="incrementBtn">
+                    <span>+</span>
+                </button>
+            </div>
+            
+            <div class="state-info">
+                <p class="state-label">State: <span id="stateLabel">Neutral</span></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
